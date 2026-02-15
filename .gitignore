@@ -1,0 +1,21 @@
+# Generic ignores
+*.log
+*.log.*
+**/secrets.yaml
+
+# ESPHome
+esphome-cache/
+esphome-config/archive/
+esphome-config/.esphome/
+
+# Home Assistant sensitive data
+ha-config/.ha_run.lock
+ha-config/.HA_VERSION
+ha-config/.storage/
+ha-config/*.db
+ha-config/*.db-shm
+ha-config/*.db-wal
+
+# Mosquitto data
+mosquitto/data/
+mosquitto/log/

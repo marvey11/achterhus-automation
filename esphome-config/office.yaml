@@ -1,0 +1,34 @@
+substitutions:
+  node_name: office
+  friendly_name: "Home Office"
+  ip_address: 192.168.178.43
+
+packages:
+  # Base configuration for all ESPHome devices
+  base_config: !include common/base_config.yaml
+
+  # I2C bus configuration (shared by all sensors using I2C)
+  i2c_bus: !include common/i2c_bus.yaml
+
+  # Connectivity settings (WiFi, API, OTA, etc.)
+  connectivity: !include common/connectivity.yaml
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      name: "${friendly_name} Air Temperature"
+      id: "${node_name}_air_temperature"
+      device_class: "temperature"
+      state_class: "measurement"    
+    humidity:
+      name: "${friendly_name} Air Humidity"
+      id: "${node_name}_air_humidity"
+      device_class: "humidity"
+      state_class: "measurement"    
+    pressure:
+      name: "${friendly_name} Air Pressure"
+      id: "${node_name}_air_pressure"
+      device_class: "pressure"
+      state_class: "measurement"    
+    address: 0x76
+    update_interval: 60s

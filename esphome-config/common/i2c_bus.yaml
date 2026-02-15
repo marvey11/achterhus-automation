@@ -1,0 +1,5 @@
+# I2C must be defined for the sensor to work
+i2c:
+  sda: 21
+  scl: 22
+  scan: true
