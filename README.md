@@ -28,11 +28,13 @@ Standard: `<domain>.<area>_<object>_<function>`
 | Attic | `attic` | Possible Future 2nd floor living space expansion, currently on occasion occupied by raccoons or other animals |
 | Barn | `barn` | Future expansion with woodworking shop |
 | Basement | `basement` | Oil Heating & Tanks |
+| Dining Area | `dining` | Dining Area, part of the "Great Room" |
 | Power Grid | `grid` | The main power connection to the house |
 | Guest Room | `guest` | Guest Bedroom and Fitness area |
-| Living Room | `living` | Large single-room Living/Dining/Kitchen area |
-| Office | `office` | Home Office and Development Lab |
-| Pantry | `pantry` | Storage for canned and other goods, vegetables |
+| HomeOffice | `home_office` | Home Office and Development Lab |
+| Kitchen Area | `kitchen` | Kitchen Area, part of the "Great Room" |
+| Living Area | `living_area` | Living Area, part of the "Great Room" |
+| Pantry | `pantry` | Storage for canned and other goods, vegetables, washer |
 | Master Bedroom | `sleeping` | Master Bedroom |
 | Veranda | `veranda` | Open Lean-to porch and lounge area |
 
@@ -47,44 +49,52 @@ Standard: `<domain>.<area>_<object>_<function>`
 
 | Function | Key | Notes |
 | :--- | :--- | :--- |
-| Carbon Monoxide (CO) | `co` | Carbon Monoxide |
+| Carbon Monoxide | `co` | Carbon Monoxide (CO) |
 | Humidity | `humidity` | Humidity |
 | Level | `level` | Capacity/fluid level |
+| Air Pressure | `pressure` | Air Pressure |
 | Security | `security` | Home Security |
 | Temperature | `temperature` | Air temperature (inside or out) |
 | Wildlife | `wildlife` | Wildlife cameras |
 
 ## Initial Sensor Draft
 
-1. **Living Room**
-    - Temperature: `sensor.living_air_temperature`
-    - Humidity (fireplace): `sensor.living_air_humidity`
-    - Carbon Monoxide (fireplace): `sensor.living_air_co`
+1. **Living Area**
+    - [x] Temperature: `sensor.living_area_air_temperature`
+    - [x] Humidity: `sensor.living_area_air_humidity`
+    - [x] Air Pressure: `sensor.living_area_air_pressure`
+    - [ ] Carbon Monoxide (fireplace): `sensor.living_area_air_co`
 2. **Master Bedroom**
-    - Temperature: `sensor.sleeping_air_temperature`
-    - Humidity: `sensor.sleeping_air_humidity`
-    - Carbon Monoxide (safety): `sensor.sleeping_air_co`
+    - [ ] Temperature: `sensor.sleeping_air_temperature`
+    - [ ] Humidity: `sensor.sleeping_air_humidity`
+    - [ ] Air Pressure: `sensor.sleeping_air_pressure`
+    - [ ] Carbon Monoxide (safety): `sensor.sleeping_air_co`
 3. **Guest Room**
-    - Temperature: `sensor.guest_air_temperature`
-    - Humidity: `sensor.guest_air_humidity`
-    - Carbon Monoxide (safety): `sensor.guest_air_co`
+    - [ ] Temperature: `sensor.guest_air_temperature`
+    - [ ] Humidity: `sensor.guest_air_humidity`
+    - [ ] Air Pressure: `sensor.guest_air_pressure`
+    - [ ] Carbon Monoxide (safety): `sensor.guest_air_co`
 4. **Office**
-    - Temperature: `sensor.office_air_temperature`
-    - Humidity: `sensor.office_air_humidity`
+    - [x] Temperature: `sensor.home_office_air_temperature`
+    - [x] Humidity: `sensor.home_office_air_humidity`
+    - [x] Air Pressure: `sensor.home_office_air_pressure`
 5. **Pantry**
-    - Temperature: `sensor.pantry_air_temperature`
+    - [x] Temperature: `sensor.pantry_air_temperature`
+    - [x] Humidity: `sensor.pantry_air_humidity`
+    - [x] Air Pressure: `sensor.pantry_air_pressure`
 6. **Veranda**
-    - Outside Temperature: `sensor.veranda_outdoor_temperature`
-    - Humidity: `sensor.veranda_air_humidity`
-    - Security Camera: `camera.veranda_area_security`
+    - [ ] Outside Temperature: `sensor.veranda_outdoor_temperature`
+    - [ ] Humidity: `sensor.veranda_air_humidity`
+    - [ ] Air Pressure: `sensor.veranda_air_pressure`
+    - [ ] Security Camera: `camera.veranda_area_security`
 7. **Basement**
-    - Humidity: `sensor.basement_air_humidity`
-    - Oil tank level: `sensor.basement_oil_level`
+    - [ ] Humidity: `sensor.basement_air_humidity`
+    - [ ] Oil tank level: `sensor.basement_oil_level`
 8. **Attic**
-    - Wildlife: `camera.attic_area_security`
+    - [ ] Wildlife: `camera.attic_area_security`
 9. **Barn**
-    - Wildlife: `camera.barn_area_security`
+    - [ ] Wildlife: `camera.barn_area_security`
 10. **Power Grid**
-    - Current Power, Real-time wattage (W): `sensor.grid_power_current`
-    - Total Energy In, Cumulative consumption (kWh): `sensor.grid_energy_total_in`
-    - Total Energy Out, Cumulative feed-in (kWh): `sensor.grid_energy_total_out`
+    - [ ] Current Power, Real-time wattage (W): `sensor.grid_power_current`
+    - [ ] Total Energy In, Cumulative consumption (kWh): `sensor.grid_energy_total_in`
+    - [ ] Total Energy Out, Cumulative feed-in (kWh): `sensor.grid_energy_total_out`
