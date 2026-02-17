@@ -16,18 +16,18 @@ packages:
 sensor:
   - platform: bme280_i2c
     temperature:
-      name: "${friendly_name} Air Temperature"
-      id: "${node_name}_air_temperature"
+      name: "Air Temperature"
+      unit_of_measurement: "°C"
       device_class: "temperature"
       state_class: "measurement"    
     humidity:
-      name: "${friendly_name} Air Humidity"
-      id: "${node_name}_air_humidity"
+      name: "Air Humidity"
+      unit_of_measurement: "%"
       device_class: "humidity"
       state_class: "measurement"    
     pressure:
-      name: "${friendly_name} Air Pressure"
-      id: "${node_name}_air_pressure"
+      name: "Air Pressure"
+      unit_of_measurement: "hPa"
       device_class: "pressure"
       state_class: "measurement"    
     address: 0x76
