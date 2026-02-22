@@ -1,0 +1,13 @@
+- alias: "System: Fireplace Sensor Offline"
+  description: "Alerts if the ESP32 in the living room loses connection"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.fireplace_status # ESPHome's internal status sensor
+      to: "off"
+      for:
+        minutes: 10 # Buffer for brief Wi-Fi blips
+  action:
+    - service: notify.mobile_app_pixel_8_pro
+      data:
+        title: "📡 Hardware Alert"
+        message: "The Fireplace CO sensor has been offline for 10 minutes. Check the Achterhus Wi-Fi."

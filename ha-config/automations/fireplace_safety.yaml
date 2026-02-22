@@ -1,0 +1,38 @@
+- alias: "Safety: Fireplace CO Emergency"
+  description: "Alerts when CO levels cross safety thresholds"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.fireplace_carbon_monoxide
+      above: 50
+      for:
+        minutes: 1
+      id: "warning"
+    - platform: numeric_state
+      entity_id: sensor.fireplace_carbon_monoxide
+      above: 100
+      id: "critical"
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: "critical"
+          sequence:
+            - service: notify.mobile_app_pixel_8_pro
+              data:
+                title: "⚠️ CRITICAL CO ALERT"
+                message: "Carbon Monoxide is over 100ppm in the living room!"
+                data:
+                  push:
+                    sound:
+                      name: "default"
+                      critical: 1
+                      volume: 1.0
+        - conditions:
+            - condition: trigger
+              id: "warning"
+          sequence:
+            - service: notify.mobile_app_pixel_8_pro
+              data:
+                title: "Fireplace Warning"
+                message: "CO levels are elevated (> 50 ppm)."
+  mode: restart
