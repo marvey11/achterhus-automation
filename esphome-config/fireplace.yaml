@@ -1,0 +1,44 @@
+substitutions:
+  node_name: fireplace
+  friendly_name: "Fireplace"
+  ip_address: 192.168.178.45
+
+packages:
+  # Base configuration for all ESPHome devices
+  base_config: !include common/base_config.yaml
+
+  # I2C bus configuration (shared by all sensors using I2C)
+  i2c_bus: !include common/i2c_bus.yaml
+
+  # Connectivity settings (WiFi, API, OTA, etc.)
+  connectivity: !include common/connectivity.yaml
+
+# The specific hardware for this node
+ads1115:
+  - address: 0x48
+    id: ads_hub
+
+sensor:
+  - platform: ads1115
+    multiplexer: 'A0_GND'
+    gain: 4.096
+    name: "CO Raw Voltage"
+    id: co_voltage
+    state_class: "measurement"
+    device_class: "voltage"
+    unit_of_measurement: "V"
+    accuracy_decimals: 3
+    update_interval: 10s
+
+  - platform: template
+    name: "Carbon Monoxide"
+    state_class: "measurement"
+    device_class: "carbon_monoxide"
+    unit_of_measurement: "ppm"
+    accuracy_decimals: 1
+    update_interval: 10s
+    lambda: |-
+      float baseline = 0.077;
+      float current_v = id(co_voltage).state;
+      if (current_v <= baseline) return 0.0;
+      return (current_v - baseline) * 500.0;
