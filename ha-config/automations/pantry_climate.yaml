@@ -1,0 +1,24 @@
+- alias: "Pantry Climate Alert"
+  description: "Alert when the cold room is outside the grocery safety zone"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.pantry_air_temperature
+      below: 5
+      id: "too_cold"
+      for: "00:05:00"
+    - platform: numeric_state
+      entity_id: sensor.pantry_air_temperature
+      above: 12
+      id: "too_warm"
+      for: "00:15:00"  # Sane buffer for sunbeams or door openings
+  action:
+    - service: notify.mobile_app_pixel_8_pro
+      data:
+        title: "🌡️ Pantry Climate Warning"
+        message: >
+          {% set temp = states('sensor.pantry_air_temperature') | float(0) | round(1) %}
+          {% if trigger.id == 'too_cold' %}
+            Pantry is too cold ({{ temp }}°C)! Check the window.
+          {% else %}
+            Pantry is too warm ({{ temp }}°C)! Move produce to the main fridge.
+          {% endif %}
