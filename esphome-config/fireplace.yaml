@@ -38,7 +38,11 @@ sensor:
     accuracy_decimals: 1
     update_interval: 10s
     lambda: |-
-      float baseline = 0.077;
+      // Final baseline for soldered board
+      float baseline = 0.035;
       float current_v = id(co_voltage).state;
+
       if (current_v <= baseline) return 0.0;
+
+      // Multiplier of 500.0 provides a sane warning threshold
       return (current_v - baseline) * 500.0;
